@@ -16,6 +16,11 @@ for i in range(header, size+header):
     line = lines[i].rstrip("\n").split()
     point = line[0] + " " + line[1] + " " + line[2]
 
-    adj_list[point] = len(line)-3
+    line_len = len(line)
+
+    adj_list[point] = []
+
+    for move in range(3, line_len):
+        adj_list[point].append(line[move])
 
 print(adj_list)
