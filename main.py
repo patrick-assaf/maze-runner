@@ -1,25 +1,21 @@
 
 file = open("input1.txt", "r")
-#output = open("output.txt", "w")
+lines = file.readlines()
 
-for i, line in enumerate(file):
-    if i == 0:
-        print("Algorithm used: ", line)
-    
-    elif i == 1:
-        print("Size of the maze: ", line)
-    
-    elif i == 2:
-        print("Entrance grid location: ", line)
+size = int(lines[4])
+algorithm = lines[0].rstrip("\n")
 
-    elif i == 3:
-        print("Exit grid location: ", line)
+start = lines[2].rstrip("\n")
+end = lines[3].rstrip("\n")
 
-    elif i == 4:
-        print("Number of points where actions are available: ", line)
-    
-    else:
-        print(line)
-        #output.write(line)
+header = 5
 
-#output.close()
+adj_list = {}
+
+for i in range(header, size+header):
+    line = lines[i].rstrip("\n").split()
+    point = line[0] + " " + line[1] + " " + line[2]
+
+    adj_list[point] = len(line)-3
+
+print(adj_list)
