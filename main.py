@@ -2,6 +2,8 @@
 file = open("input1.txt", "r")
 lines = file.readlines()
 
+output = open("output.txt", "w")
+
 size = int(lines[4])
 algorithm = lines[0].rstrip("\n")
 
@@ -58,4 +60,38 @@ for i in range(header, size+header):
         elif line[move] == "18":
             adj_list[point].append(line[0] + " " + str(int(line[1])-1) + " " + str(int(line[2])-1))
 
-print(adj_list)
+def use_bfs(adjacency_list, start_node, end_node):
+
+    visited_nodes = []
+    queue = [[start_node]]
+
+    while queue:
+        path = queue.pop(0)
+        node = path[-1]
+
+        if node not in visited_nodes:
+            adjacent_nodes = adjacency_list[node]
+
+            for adjacent_node in adjacent_nodes:
+                new_path = list(path)
+                new_path.append(adjacent_node)
+                queue.append(new_path)
+
+                if adjacent_node == end_node:
+                    output.write(str(len(new_path)-1) + "\n")
+                    output.write(str(len(new_path)))
+                    for node in new_path:
+                        if node == start:
+                            value = 0
+                        else:
+                            value = 1
+                        output.write("\n" + node + " " + str(value))
+                    return
+            
+            visited_nodes.append(node)
+    
+    output.write("FAIL")
+
+use_bfs(adj_list, start, end)
+
+output.close()
