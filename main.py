@@ -1,5 +1,7 @@
+import time
+start_time = time.time()
 
-file = open("input1.txt", "r")
+file = open("input5.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -97,5 +99,7 @@ def use_bfs(adjacency_list, start_node, end_node):
     output.write("FAIL")
 
 use_bfs(adj_list, start, end)
+
+print("--- %s seconds ---" % (time.time() - start_time))
 
 output.close()
