@@ -65,6 +65,10 @@ def use_bfs(adjacency_list, start_node, end_node):
     visited_nodes = []
     queue = [[start_node]]
 
+    if start_node == end_node:
+        output.write("0\n" + "1\n" + start_node + " " + "0")
+        return
+
     while queue:
         path = queue.pop(0)
         node = path[-1]
