@@ -98,7 +98,8 @@ def use_bfs(adjacency_list, start_node, end_node):
     
     output.write("FAIL")
 
-use_bfs(adj_list, start, end)
+if algorithm == "BFS":
+    use_bfs(adj_list, start, end)
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
