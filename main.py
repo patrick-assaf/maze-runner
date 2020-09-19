@@ -3,7 +3,7 @@ start_time = time.time()
 
 from collections import deque
 
-file = open("input8.txt", "r")
+file = open("input5.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -69,7 +69,7 @@ def create_adj_list():
 def use_bfs(adjacency_list, start_node, end_node):
 
     visited_nodes = set()
-    queue = [[start_node]]
+    queue = deque([[start_node]])
 
     if start_node == end_node:
         output.write("0\n" + "1\n" + start_node + " " + "0")
@@ -80,7 +80,7 @@ def use_bfs(adjacency_list, start_node, end_node):
         return
 
     while queue:
-        path = queue.pop(0)
+        path = queue.popleft()
         node = path[-1]
 
         if node not in visited_nodes:
