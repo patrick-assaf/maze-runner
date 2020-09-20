@@ -134,6 +134,7 @@ def use_ucs(adjacency_list, start_node, end_node):
             continue
 
         adjacent_nodes = adjacency_list[node[0:-3]]
+
         for adjacent_node in adjacent_nodes:
             neighbors.append(adjacent_node[0:-3])
 
@@ -148,8 +149,6 @@ def use_ucs(adjacency_list, start_node, end_node):
             for point in path:
                 output.write("\n" + point)
             return
-        
-        adjacent_nodes = adjacency_list[node[0:-3]]
 
         for adjacent_node in adjacent_nodes:
             adjacent_node_cost = int(adjacent_node[-2:])
