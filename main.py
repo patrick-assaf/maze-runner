@@ -2,6 +2,7 @@ import time
 start_time = time.time()
 
 from collections import deque
+import heapq
 
 file = open("input2.txt", "r")
 lines = file.readlines()
@@ -113,9 +114,17 @@ def use_bfs(adjacency_list, start_node, end_node):
     
     output.write("FAIL")
 
-def use_ucs():
-    create_adj_list()
-    print(adj_list)
+def use_ucs(adjacency_list, start_node, end_node):
+    visited_nodes = set()
+    queue = deque([[start_node]])
+
+    if start_node == end_node:
+        output.write("0\n" + "1\n" + start_node + " " + "0")
+        return
+    
+    if start_node not in adjacency_list or end_node not in adjacency_list:
+        output.write("FAIL") 
+        return
 
 def use_astar():
     output.write("TODO: A*")
@@ -125,7 +134,8 @@ if algorithm == "BFS":
     use_bfs(adj_list, start, end)
 
 elif algorithm == "UCS":
-    use_ucs()
+    create_adj_list()
+    use_ucs(adj_list, start, end)
 
 elif algorithm == "A*":
     use_astar()
