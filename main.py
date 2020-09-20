@@ -128,9 +128,17 @@ def use_ucs(adjacency_list, start_node, end_node):
     
     while queue:
         cost, node, path = heapq.heappop(queue)
+        neighbors = list()
 
         if node in visited_nodes and visited_nodes[node] < cost:
             continue
+
+        adjacent_nodes = adjacency_list[node[0:-3]]
+        for adjacent_node in adjacent_nodes:
+            neighbors.append(adjacent_node[0:-3])
+
+        if len(path) > 1 and path[-1][0:-3] not in neighbors and path[-1] != node:
+            path = path[:-1]
         
         path.append(node)
 
