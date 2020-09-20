@@ -4,7 +4,7 @@ start_time = time.time()
 from collections import deque
 import heapq
 
-file = open("input2.txt", "r")
+file = open("input6.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -115,8 +115,8 @@ def use_bfs(adjacency_list, start_node, end_node):
     output.write("FAIL")
 
 def use_ucs(adjacency_list, start_node, end_node):
-    visited_nodes = set()
-    queue = deque([[start_node]])
+    visited_nodes = {}
+    queue = [(0, start_node + " 0 ", [])]
 
     if start_node == end_node:
         output.write("0\n" + "1\n" + start_node + " " + "0")
@@ -125,6 +125,32 @@ def use_ucs(adjacency_list, start_node, end_node):
     if start_node not in adjacency_list or end_node not in adjacency_list:
         output.write("FAIL") 
         return
+    
+    while queue:
+        cost, node, path = heapq.heappop(queue)
+
+        if node in visited_nodes and visited_nodes[node] < cost:
+            continue
+        
+        path = path + [node]
+
+        if node[0:-3] == end_node:
+            output.write(str(cost))
+            output.write("\n" + str(len(path)))
+            for point in path:
+                output.write("\n" + point)
+            return
+        
+        adjacent_nodes = adjacency_list[node[0:-3]]
+
+        for adjacent_node in adjacent_nodes:
+            adjacent_node_cost = int(adjacent_node[-2:])
+            if adjacent_node[0:-3] not in visited_nodes:
+                heapq.heappush(queue, (cost + adjacent_node_cost, adjacent_node, path))
+
+        visited_nodes[node[0:-3]] = cost
+    
+    output.write("FAIL")
 
 def use_astar():
     output.write("TODO: A*")
