@@ -3,7 +3,7 @@ start_time = time.time()
 
 from collections import deque
 
-file = open("input5.txt", "r")
+file = open("input2.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -106,9 +106,23 @@ def use_bfs(adjacency_list, start_node, end_node):
     
     output.write("FAIL")
 
+def use_ucs():
+
+    output.write("TODO: UCS")
+
+def use_astar():
+
+    output.write("TODO: A*")
+
 if algorithm == "BFS":
     create_adj_list()
     use_bfs(adj_list, start, end)
+
+elif algorithm == "UCS":
+    use_ucs()
+
+elif algorithm == "A*":
+    use_astar()
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
