@@ -116,7 +116,7 @@ def use_bfs(adjacency_list, start_node, end_node):
 
 def use_ucs(adjacency_list, start_node, end_node):
     visited_nodes = {}
-    queue = [(0, start_node + " 0 ", set())]
+    queue = [(0, start_node + " 0 ", list())]
 
     if start_node == end_node:
         output.write("0\n" + "1\n" + start_node + " " + "0")
@@ -132,7 +132,7 @@ def use_ucs(adjacency_list, start_node, end_node):
         if node in visited_nodes and visited_nodes[node] < cost:
             continue
         
-        path.add(node)
+        path.append(node)
 
         if node[0:-3] == end_node:
             output.write(str(cost))
