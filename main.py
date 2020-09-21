@@ -171,6 +171,7 @@ elif algorithm == "UCS":
     use_ucs(adj_list, start, end)
 
 elif algorithm == "A*":
+    create_adj_list()
     use_astar()
 
 print("--- %s seconds ---" % (time.time() - start_time))
