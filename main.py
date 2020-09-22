@@ -143,6 +143,11 @@ def use_ucs(adjacency_list, start_node, end_node):
         
         path.append(node)
 
+        if len(path) > 2 and path[-3][0:-3] in neighbors and path[-2][0:-3] in neighbors:
+            hold = path[-1]
+            path = path[:-2]
+            path.append(hold)
+
         if node[0:-3] == end_node:
             output.write(str(cost))
             output.write("\n" + str(len(path)))
@@ -187,6 +192,11 @@ def use_astar(adjacency_list, start_node, end_node):
             path = path[:-1]
         
         path.append(node)
+
+        if len(path) > 2 and path[-3][0:-3] in neighbors and path[-2][0:-3] in neighbors:
+            hold = path[-1]
+            path = path[:-2]
+            path.append(hold)
 
         if node[0:-3] == end_node:
             output.write(str(cost))
