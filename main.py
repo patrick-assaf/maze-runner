@@ -4,7 +4,7 @@ start_time = time.time()
 from collections import deque
 import heapq
 
-file = open("input3.txt", "r")
+file = open("input7.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -179,6 +179,8 @@ def use_astar(adjacency_list, start_node, end_node):
     while queue:
         cost, node, path = heapq.heappop(queue)
         neighbors = list()
+        adjacency_check = list()
+        adjacent_check_list = list()
 
         if node in visited_nodes and visited_nodes[node] < cost:
             continue
@@ -193,7 +195,12 @@ def use_astar(adjacency_list, start_node, end_node):
         
         path.append(node)
 
-        if len(path) > 2 and path[-3][0:-3] in neighbors and path[-2][0:-3] in neighbors:
+        if len(path) > 2:
+            adjacency_check = adjacency_list[path[-3][0:-3]]
+            for adjacency_check_node in adjacency_check:
+                adjacent_check_list.append(adjacency_check_node[0:-3])
+
+        if len(path) > 2 and path[-2][0:-3] in adjacent_check_list and path[-1][0:-3] in adjacent_check_list:
             hold = path[-1]
             path = path[:-2]
             path.append(hold)
