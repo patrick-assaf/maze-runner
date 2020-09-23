@@ -24,9 +24,9 @@ def append_value(code):
         return ""
     elif algorithm == "UCS" or algorithm == "A*":
         if code < 7:
-            return " 10" 
+            return " 10"
         elif code >= 7:
-            return " 14"  
+            return " 14"
 
 def create_adj_list():
     for i in range(header, size+header):
@@ -84,7 +84,7 @@ def use_bfs(adjacency_list, start_node, end_node):
         return
     
     if start_node not in adjacency_list or end_node not in adjacency_list:
-        output.write("FAIL") 
+        output.write("FAIL")
         return
 
     while queue:
@@ -123,7 +123,7 @@ def use_ucs(adjacency_list, start_node, end_node):
         return
     
     if start_node not in adjacency_list or end_node not in adjacency_list:
-        output.write("FAIL") 
+        output.write("FAIL")
         return
     
     while queue:
@@ -185,7 +185,7 @@ def use_astar(adjacency_list, start_node, end_node):
         return
     
     if start_node not in adjacency_list or end_node not in adjacency_list:
-        output.write("FAIL") 
+        output.write("FAIL")
         return
     
     while queue:
