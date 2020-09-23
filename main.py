@@ -4,7 +4,7 @@ start_time = time.time()
 from collections import deque
 import heapq
 
-file = open("inputs/input7.txt", "r")
+file = open("input.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -229,7 +229,7 @@ def use_astar(adjacency_list, start_node, end_node):
 
         for adjacent_node in adjacent_nodes:
             coords = adjacent_node.split(" ")
-            heuristic = ((abs(end_x-int(coords[0]))+abs(end_y-int(coords[1]))+abs(end_z-int(coords[2])))/2)*14
+            heuristic = (abs(end_x-int(coords[0]))+abs(end_y-int(coords[1]))+abs(end_z-int(coords[2])))*10
             adjacent_node_cost = heuristic
             if adjacent_node[0:-3] not in visited_nodes:
                 heapq.heappush(queue, (cost + adjacent_node_cost, adjacent_node, path))
