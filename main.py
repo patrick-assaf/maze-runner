@@ -4,7 +4,7 @@ start_time = time.time()
 from collections import deque
 import heapq
 
-file = open("input.txt", "r")
+file = open("inputs/input7.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
@@ -175,6 +175,11 @@ def use_astar(adjacency_list, start_node, end_node):
     visited_nodes = {}
     queue = [(0, start_node + " 0 ", list())]
 
+    end_coords = end_node.split(" ")
+    end_x = int(end_coords[0])
+    end_y = int(end_coords[1])
+    end_z = int(end_coords[2])
+
     if start_node == end_node:
         output.write("0\n" + "1\n" + start_node + " " + "0")
         return
@@ -213,14 +218,19 @@ def use_astar(adjacency_list, start_node, end_node):
             path.append(hold)
 
         if node[0:-3] == end_node:
-            output.write(str(cost))
+            actual_cost = 0
+            for point in path:
+                actual_cost += int(point[-2:])
+            output.write(str(actual_cost))
             output.write("\n" + str(len(path)))
             for point in path:
                 output.write("\n" + point)
             return
 
         for adjacent_node in adjacent_nodes:
-            adjacent_node_cost = int(adjacent_node[-2:])
+            coords = adjacent_node.split(" ")
+            heuristic = ((abs(end_x-int(coords[0]))+abs(end_y-int(coords[1]))+abs(end_z-int(coords[2])))/2)*14
+            adjacent_node_cost = heuristic
             if adjacent_node[0:-3] not in visited_nodes:
                 heapq.heappush(queue, (cost + adjacent_node_cost, adjacent_node, path))
 
