@@ -4,7 +4,7 @@ start_time = time.time()
 from collections import deque
 import heapq
 
-file = open("input7.txt", "r")
+file = open("input.txt", "r")
 lines = file.readlines()
 
 output = open("output.txt", "w")
